@@ -64,20 +64,24 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products = [] }) =>
 
       <div className="aspect-[4/3] relative overflow-hidden rounded-lg mb-4">
         {product.image?.asset ? (
-          <img
-            src={urlFor({
-              _type: "image",  // Ensure _type is set
-              asset: product.image.asset,  // Make sure we pass the full asset reference
-            }).width(400).height(300).fit("crop").url()}
-            alt={product.name || "Product Image"}
-            className="w-full h-full object-cover transition-transform group-hover:scale-105"
-            loading="lazy"
-          />
-        ) : (
-          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-            <span className="text-gray-500">No Image Available</span>
-          </div>
-        )}
+  <img
+    src={urlFor({
+      _type: "image",  // Ensure _type is set to "image"
+      asset: {
+        _ref: product.image.asset._ref,  // Pass the correct asset reference
+        _type: "reference"  // Set _type as "reference"
+      }
+    }).width(400).height(300).fit("crop").url()}
+    alt={product.name || "Product Image"}
+    className="w-full h-full object-cover transition-transform group-hover:scale-105"
+    loading="lazy"
+  />
+) : (
+  <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+    <span className="text-gray-500">No Image Available</span>
+  </div>
+)}
+
       </div>
 
       <div className="space-y-2">
