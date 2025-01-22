@@ -8,7 +8,7 @@ const FeedBack = () => {
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
   const [error, setError] = useState("");
 
-  const handleStarClick = (rate) => {
+  const handleStarClick = (rate: number) => {  // Explicitly type 'rate' as 'number'
     setRating(rate);
     setError(""); // Reset error when user selects a rating
   };
