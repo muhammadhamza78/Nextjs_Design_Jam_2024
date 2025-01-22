@@ -3,7 +3,7 @@ import React from "react";
 import { useCart } from "@/content/CartContext";
 
 const Cart = () => {
-  const { cart, updateQuantity, removeFromCart } = useCart();
+  const { cart, updateQuantity, removeFromCart } = useCart(); // Types are inferred automatically
   const totalPrice = cart.reduce(
     (sum, { product, quantity }) => sum + product.price * quantity,
     0
