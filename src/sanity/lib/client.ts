@@ -1,30 +1,3 @@
-// import imageUrlBuilder from "@sanity/image-url";
-// import { createClient } from "@sanity/client";
-
-// export const client = createClient({
-//   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "o4pi99er",
-//   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
-//   apiVersion: "2025-01-15",
-//   useCdn: process.env.NODE_ENV === "production",
-// });
-
-// const builder = imageUrlBuilder(client);
-
-// export function urlFor(source) {
-//   return builder.image(source);
-// }
-
-
-
-
-
-
-
-
-
-
-// sanity/lib/client.ts
-
 import imageUrlBuilder from "@sanity/image-url";
 import { createClient } from "@sanity/client";
 
@@ -37,7 +10,16 @@ export const client = createClient({
 
 const builder = imageUrlBuilder(client);
 
-export function urlFor(source) {
+// Define a type for the source parameter based on the expected image object structure
+interface SanityImage {
+  _type: "image";
+  asset: {
+    _ref: string;
+    _type: "reference";
+  };
+}
+
+export function urlFor(source: SanityImage) {
   return builder.image(source);
 }
 
