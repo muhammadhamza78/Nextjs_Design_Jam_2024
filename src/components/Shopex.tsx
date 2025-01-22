@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const Shopex = () => {
   const services = [
@@ -36,11 +37,13 @@ const Shopex = () => {
             className="bg-white shadow-lg p-6 rounded-md w-64 text-center flex flex-col"
           >
             <div className="mb-4 flex justify-center items-center">
-              <div className="w-20 h-20  rounded-full flex justify-center items-center">
-                <img 
-                  src={service.icon} 
-                  alt="" 
-                  className="w-12 h-12 object-contain" 
+              <div className="w-20 h-20 rounded-full flex justify-center items-center">
+                <Image 
+                  src={`/${service.icon}`} // Ensure your images are in the public folder
+                  alt={service.title}
+                  width={48} 
+                  height={48} 
+                  className="object-contain" 
                 />
               </div>
             </div>
