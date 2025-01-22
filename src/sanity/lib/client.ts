@@ -4,9 +4,9 @@ import { createClient } from 'next-sanity';
 import type { SanityImage } from '@/types/sanity';
 
 export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'o4pi99er',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-  apiVersion: '2024-01-22',
+  apiVersion: '2025-01-15',
   useCdn: true,
 });
 
