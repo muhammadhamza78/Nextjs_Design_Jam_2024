@@ -63,15 +63,9 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products = [] }) =>
       </button>
 
       <div className="aspect-[4/3] relative overflow-hidden rounded-lg mb-4">
-        {product.image?.asset ? (
+       {product.image?.asset ? (
   <img
-    src={urlFor({
-      _type: "image",  // Ensure _type is set to "image"
-      asset: {
-        _ref: product.image.asset._ref,  // Pass the correct asset reference
-        _type: "reference"  // Set _type as "reference"
-      }
-    }).width(400).height(300).fit("crop").url()}
+    src={urlFor(product.image).width(400).height(300).fit("crop").url()}
     alt={product.name || "Product Image"}
     className="w-full h-full object-cover transition-transform group-hover:scale-105"
     loading="lazy"
@@ -81,6 +75,7 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products = [] }) =>
     <span className="text-gray-500">No Image Available</span>
   </div>
 )}
+
 
       </div>
 
