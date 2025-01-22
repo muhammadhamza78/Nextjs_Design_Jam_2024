@@ -1,6 +1,25 @@
+// types.ts
+export interface SanityImage {
+  _type: "image";
+  asset: {
+    _ref: string;
+    _type: "reference";
+  };
+}
+
+export interface Product {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  stockLevel: number;
+  image?: SanityImage;
+}
+
+// components/FeaturedProducts.tsx
 import React, { useState, useMemo } from "react";
 import { Product } from "@/app/type";
-import { urlFor } from "@/sanity/lib/client"; // Make sure your urlFor function is correct
+import { urlFor } from "@/sanity/lib/client";
 import Link from "next/link";
 import { useCart } from "@/content/CartContext";
 import { useWishlist } from "@/content/WishlistContext";
@@ -10,25 +29,22 @@ interface FeaturedProductsProps {
 }
 
 const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products = [] }) => {
-  const [showAll, setShowAll] = useState(false); // Track the state of 'See More'
+  const [showAll, setShowAll] = useState(false);
   const { addToCart, cart } = useCart();
   const { wishlist, toggleWishlist } = useWishlist();
 
-  // Memoize safe products
   const safeProducts = useMemo(() =>
     Array.isArray(products) ? products : [],
     [products]
   );
 
-  // Memoize displayed products based on 'showAll' state
   const displayedProducts = useMemo(() => {
     if (showAll) {
-      return safeProducts; // Show all products if 'showAll' is true
+      return safeProducts;
     }
-    return safeProducts.slice(0, 3); // Show only 3 products initially
+    return safeProducts.slice(0, 3);
   }, [safeProducts, showAll]);
 
-  // Memoize cart quantities lookup
   const cartQuantities = useMemo(() => {
     const quantities: { [key: string]: number } = {};
     cart.forEach(item => {
@@ -63,20 +79,22 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products = [] }) =>
       </button>
 
       <div className="aspect-[4/3] relative overflow-hidden rounded-lg mb-4">
-       {product.image?.asset ? (
-  <img
-    src={urlFor(product.image).width(400).height(300).fit("crop").url()}
-    alt={product.name || "Product Image"}
-    className="w-full h-full object-cover transition-transform group-hover:scale-105"
-    loading="lazy"
-  />
-) : (
-  <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-    <span className="text-gray-500">No Image Available</span>
-  </div>
-)}
-
-
+        {product.image?.asset ? (
+          <img
+            src={urlFor(product.image)
+              .width(400)
+              .height(300)
+              .fit("crop")
+              .url()}
+            alt={product.name || "Product Image"}
+            className="w-full h-full object-cover transition-transform group-hover:scale-105"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+            <span className="text-gray-500">No Image Available</span>
+          </div>
+        )}
       </div>
 
       <div className="space-y-2">
@@ -102,7 +120,11 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products = [] }) =>
 
           <button
             id={`add-to-cart-${product._id}`}
-            className={`w-1/2 py-2 px-4 rounded-lg text-center transition-all ${product.stockLevel > 0 ? "bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
+            className={`w-1/2 py-2 px-4 rounded-lg text-center transition-all ${
+              product.stockLevel > 0 
+                ? "bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white" 
+                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+            }`}
             onClick={() => handleAddToCart(product)}
             disabled={product.stockLevel === 0}
           >
@@ -113,7 +135,6 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products = [] }) =>
     </div>
   ));
 
-  // Explicitly set the display name for the memoized component
   ProductCard.displayName = "ProductCard";
 
   return (
@@ -132,7 +153,6 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products = [] }) =>
             ))}
           </div>
 
-          {/* Show "See More" button if there are more than 3 products */}
           {!showAll && safeProducts.length > 3 && (
             <div className="mt-8 text-center">
               <button
