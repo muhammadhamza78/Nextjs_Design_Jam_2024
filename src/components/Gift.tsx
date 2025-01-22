@@ -2,9 +2,9 @@
 import { useState } from "react";
 
 const Gift = () => {
-  const [giftCardAmount, setGiftCardAmount] = useState("");
+  const [giftCardAmount, setGiftCardAmount] = useState<number | string>(""); // Define giftCardAmount as a number or string
   const [voucherCode, setVoucherCode] = useState("");
-  const [appliedVoucher, setAppliedVoucher] = useState(null);
+  const [appliedVoucher, setAppliedVoucher] = useState<boolean | null>(null);
   const [voucherMessage, setVoucherMessage] = useState("");
   const [totalAmount, setTotalAmount] = useState(100); // Example total amount before discount
 
@@ -15,7 +15,7 @@ const Gift = () => {
   ];
 
   // Handle gift card selection
-  const handleGiftCardSelect = (amount) => {
+  const handleGiftCardSelect = (amount: number) => {  // Explicitly type 'amount' as 'number'
     setGiftCardAmount(amount);
   };
 
