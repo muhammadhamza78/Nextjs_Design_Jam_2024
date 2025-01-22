@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { Product } from "@/app/type";
-import { urlFor } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/client"; // Make sure your urlFor function is correct
 import Link from "next/link";
 import { useCart } from "@/content/CartContext";
 import { useWishlist } from "@/content/WishlistContext";
@@ -66,8 +66,8 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products = [] }) =>
         {product.image?.asset ? (
           <img
             src={urlFor({
-              _type: "image",  // Make sure _type is set
-              asset: product.image.asset,
+              _type: "image",  // Ensure _type is set
+              asset: product.image.asset,  // Make sure we pass the full asset reference
             }).width(400).height(300).fit("crop").url()}
             alt={product.name || "Product Image"}
             className="w-full h-full object-cover transition-transform group-hover:scale-105"
