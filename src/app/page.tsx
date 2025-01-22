@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
-import { Product } from "@/types";
+import { Product } from "@/app/type";
 import { CartProvider } from "@/content/CartContext";
 import { WishlistProvider } from "@/content/WishlistContext";
 import Header from "@/components/Header";
