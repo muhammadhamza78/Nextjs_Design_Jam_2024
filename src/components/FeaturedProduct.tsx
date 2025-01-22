@@ -1,22 +1,4 @@
-// types.ts
-export interface SanityImage {
-  _type: "image";
-  asset: {
-    _ref: string;
-    _type: "reference";
-  };
-}
 
-export interface Product {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  stockLevel: number;
-  image?: SanityImage;
-}
-
-// components/FeaturedProducts.tsx
 import React, { useState, useMemo } from "react";
 import { Product } from "@/app/type";
 import { urlFor } from "@/sanity/lib/client";
