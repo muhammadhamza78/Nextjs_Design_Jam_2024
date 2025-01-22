@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, ReactNode } from 'react';
-import { Product } from "@/types";
+import { Product } from "@/app/type";
 
 interface WishlistContextType {
   wishlist: Product[];
