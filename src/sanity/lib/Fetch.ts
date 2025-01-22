@@ -12,7 +12,7 @@ export async function sanityFetch({
   params = {},
 }: {
   query: string;
-  params?: Record<string, any>; // Specify a more general type for params
+  params?: Record<string, unknown>; // Use unknown instead of any
 }) {
   return await client.fetch(query, params);
 }
