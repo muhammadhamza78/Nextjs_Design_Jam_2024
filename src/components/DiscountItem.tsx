@@ -1,11 +1,12 @@
 import React from "react";
+import Image from "next/image"; // Importing the Image component
 
 const DiscountItem: React.FC = () => {
   return (
     <section className="py-16 bg-white">
       <div className="max-w-6xl mx-auto flex flex-wrap items-center gap-10 px-8">
         {/* Left Content */}
-        <div className="flex-1 ">
+        <div className="flex-1">
           <h2 className="text-purple-700 text-3xl font-bold mb-4">
             Discount Item
           </h2>
@@ -34,11 +35,16 @@ const DiscountItem: React.FC = () => {
 
         {/* Right Content */}
         <div className="flex-1">
-          <img
-            src="/sofa16.svg"
-            alt="Chair"
-            className="rounded-full shadow-md w-full max-w-sm mx-auto"
-          />
+          <div className="relative w-full max-w-sm mx-auto">
+            <Image
+              src="/sofa16.svg" // Path to your image
+              alt="Chair"
+              layout="responsive" // Ensures the image adapts to the parent container's size
+              width={500} // Specify the width of the image
+              height={500} // Specify the height of the image
+              className="rounded-full shadow-md"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -46,3 +52,4 @@ const DiscountItem: React.FC = () => {
 };
 
 export default DiscountItem;
+
