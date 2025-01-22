@@ -12,7 +12,7 @@ const HelpCenter = () => {
     {
       question: "How do I track my order?",
       answer:
-        "You can track your order by entering your order ID in the Order Tracking page. If you don't have an order ID, please contact our support team.",
+        "You can track your order by entering your order ID in the Order Tracking page. If you don&apos;t have an order ID, please contact our support team.",
     },
     {
       question: "What payment methods do you accept?",
@@ -27,7 +27,7 @@ const HelpCenter = () => {
     {
       question: "How do I return a product?",
       answer:
-        "To return a product, please visit our Return & Exchange page, where you can fill out a return request form. We will process your return as quickly as possible.",
+        "To return a product, please visit our Return &amp; Exchange page, where you can fill out a return request form. We will process your return as quickly as possible.",
     },
   ];
 
@@ -59,7 +59,7 @@ const HelpCenter = () => {
       <div className="bg-gray-100 p-6 rounded-lg shadow-md">
         <h3 className="text-2xl font-semibold mb-4">Need Help?</h3>
         <p className="mb-4">
-          If you couldn't find the answer to your question, feel free to contact our support team.
+          If you couldn&apos;t find the answer to your question, feel free to contact our support team.
         </p>
         <div className="flex flex-col gap-4">
           <a
@@ -72,7 +72,7 @@ const HelpCenter = () => {
             href="/return-exchange"
             className="block text-lg bg-blue-600 text-white py-2 px-4 rounded-lg text-center hover:bg-blue-700"
           >
-            Return & Exchange Policy
+            Return &amp; Exchange Policy
           </a>
         </div>
       </div>
