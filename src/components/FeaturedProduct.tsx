@@ -158,7 +158,7 @@
 
 
 import React, { useState, useMemo } from "react";
-import { Product } from "@/types";
+import { Product } from "@/app/type";
 import { urlFor } from "@/sanity/lib/client";
 import Link from "next/link";
 import { useCart } from "@/content/CartContext";
