@@ -46,5 +46,3 @@ const DiscountItem: React.FC = () => {
 };
 
 export default DiscountItem;
-
-
