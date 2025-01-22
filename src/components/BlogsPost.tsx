@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image"; // Importing Image component
 
 const blogPosts = [
   {
@@ -50,11 +51,15 @@ const Blogspost: React.FC = () => {
             key={post.id}
             className="bg-white rounded-md shadow-md p-4 w-full max-w-sm mx-auto"
           >
-            <img
-              src={post.imgSrc}
-              alt={post.title}
-              className="h-40 w-full object-cover rounded-md"
-            />
+            <div className="relative w-full h-40">
+              <Image
+                src={post.imgSrc}
+                alt={post.title}
+                layout="fill" // Makes the image fill the container
+                objectFit="cover" // Ensures the image covers the container area
+                className="rounded-md"
+              />
+            </div>
             <div className="mt-4">
               <div className="text-sm text-gray-500 flex items-center gap-2">
                 <span>{post.author}</span>
