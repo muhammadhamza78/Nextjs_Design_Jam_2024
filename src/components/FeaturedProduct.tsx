@@ -64,11 +64,7 @@ const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products = [] }) =>
     <div className="aspect-[4/3] relative overflow-hidden rounded-lg mb-4">
   {product.image ? (
    <img
-  src={urlFor(product.image)
-    .width(400)
-    .height(300)
-    .fit("crop")
-    .url()}
+  src={urlFor(product.image).url()}
   alt={product.name || "Product Image"}
   className="w-full h-full object-cover transition-transform group-hover:scale-105"
   loading="lazy"
