@@ -25,7 +25,7 @@ const OrderTracking = () => {
       }
       const data = await response.json();
       setOrderStatus(data.status);
-    } catch (err) {
+    } catch {
       setError("Failed to track the order. Please try again.");
     } finally {
       setLoading(false);
