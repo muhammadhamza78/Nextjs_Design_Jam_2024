@@ -61,7 +61,7 @@ const FeedBack = () => {
         <textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          rows="4"
+          rows={4}  // Corrected to use a number instead of a string
           placeholder="Write your comments here..."
           className="w-full border border-gray-300 p-2 rounded-md mt-2 text-sm sm:text-base"
         ></textarea>
