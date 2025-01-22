@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { MdPhone } from "react-icons/md";
@@ -34,9 +33,6 @@ const filters: DropdownOption[] = [
 ];
 
 const Header = () => {
-  const [languageDropdown, setLanguageDropdown] = useState(false);
-  const [currencyDropdown, setCurrencyDropdown] = useState(false);
-  const [filterDropdown, setFilterDropdown] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
   const [selectedCurrency, setSelectedCurrency] = useState(currencies[0]);
@@ -49,9 +45,6 @@ const Header = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
-        setLanguageDropdown(false);
-        setCurrencyDropdown(false);
-        setFilterDropdown(false);
         setActiveMobileDropdown(null);
       }
     };
@@ -216,56 +209,35 @@ const Header = () => {
             {isMobileMenuOpen && (
               <div className="absolute left-0 right-0 top-full bg-violet-800 shadow-lg z-50">
                 <div className="p-4 space-y-4">
-                  <a href="mailto:mhhasanul@gmail.com" className="flex items-center gap-2 py-2">
+                  <a href="mailto:mhhasanul@gmail.com" className="flex items-center gap-2">
                     <AiOutlineMail />
                     <span>mhhasanul@gmail.com</span>
                   </a>
-                  
-                  <a href="tel:1234567890" className="flex items-center gap-2 py-2">
+                  <a href="tel:1234567890" className="flex items-center gap-2">
                     <MdPhone />
                     <span>(12345)67890</span>
                   </a>
+                </div>
 
-                  <div className="border-t border-violet-600 pt-4">
-                    {/* Filter Dropdown */}
-                    <div className="py-2">
-                      <button 
-                        className="flex items-center justify-between w-full py-2"
-                        onClick={() => toggleMobileDropdown('filter')}
-                      >
-                        <span>Filter: {selectedFilter.label}</span>
-                        <IoIosArrowDown className={`transition-transform ${activeMobileDropdown === 'filter' ? 'rotate-180' : ''}`} />
-                      </button>
-                      {activeMobileDropdown === 'filter' && (
-                        <div className="bg-violet-700 rounded-lg mt-2">
-                          {filters.map((filter) => (
-                            <button
-                              key={filter.value}
-                              className="w-full text-left px-4 py-2 hover:bg-violet-600"
-                              onClick={() => handleOptionSelect(filter, 'filter')}
-                            >
-                              {filter.label}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Language Dropdown */}
-                    <div className="py-2">
-                      <button 
-                        className="flex items-center justify-between w-full py-2"
+                <div className="p-4">
+                  {/* Mobile Dropdowns */}
+                  <div className="space-y-4">
+                    <div className="relative">
+                      <button
+                        className="flex items-center justify-between w-full"
                         onClick={() => toggleMobileDropdown('language')}
                       >
-                        <span>Language: {selectedLanguage.label}</span>
-                        <IoIosArrowDown className={`transition-transform ${activeMobileDropdown === 'language' ? 'rotate-180' : ''}`} />
+                        <span>{selectedLanguage.label}</span>
+                        <IoIosArrowDown
+                          className={`transition-transform ${activeMobileDropdown === 'language' ? 'rotate-180' : ''}`}
+                        />
                       </button>
                       {activeMobileDropdown === 'language' && (
-                        <div className="bg-violet-700 rounded-lg mt-2">
+                        <div className="absolute top-full mt-2 bg-white text-black rounded-lg shadow-lg z-10 min-w-[120px]">
                           {languages.map((lang) => (
                             <button
                               key={lang.value}
-                              className="w-full text-left px-4 py-2 hover:bg-violet-600"
+                              className="w-full text-left px-4 py-2 hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg"
                               onClick={() => handleOptionSelect(lang, 'language')}
                             >
                               {lang.label}
@@ -275,21 +247,22 @@ const Header = () => {
                       )}
                     </div>
 
-                    {/* Currency Dropdown */}
-                    <div className="py-2">
-                      <button 
-                        className="flex items-center justify-between w-full py-2"
+                    <div className="relative">
+                      <button
+                        className="flex items-center justify-between w-full"
                         onClick={() => toggleMobileDropdown('currency')}
                       >
-                        <span>Currency: {selectedCurrency.label}</span>
-                        <IoIosArrowDown className={`transition-transform ${activeMobileDropdown === 'currency' ? 'rotate-180' : ''}`} />
+                        <span>{selectedCurrency.label}</span>
+                        <IoIosArrowDown
+                          className={`transition-transform ${activeMobileDropdown === 'currency' ? 'rotate-180' : ''}`}
+                        />
                       </button>
                       {activeMobileDropdown === 'currency' && (
-                        <div className="bg-violet-700 rounded-lg mt-2">
+                        <div className="absolute top-full mt-2 bg-white text-black rounded-lg shadow-lg z-10 min-w-[120px]">
                           {currencies.map((curr) => (
                             <button
                               key={curr.value}
-                              className="w-full text-left px-4 py-2 hover:bg-violet-600"
+                              className="w-full text-left px-4 py-2 hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg"
                               onClick={() => handleOptionSelect(curr, 'currency')}
                             >
                               {curr.label}
@@ -299,10 +272,30 @@ const Header = () => {
                       )}
                     </div>
 
-                    <a href="/login" className="flex items-center gap-2 py-2">
-                      <FiUser />
-                      <span>Login</span>
-                    </a>
+                    <div className="relative">
+                      <button
+                        className="flex items-center justify-between w-full"
+                        onClick={() => toggleMobileDropdown('filter')}
+                      >
+                        <span>{selectedFilter.label}</span>
+                        <IoIosArrowDown
+                          className={`transition-transform ${activeMobileDropdown === 'filter' ? 'rotate-180' : ''}`}
+                        />
+                      </button>
+                      {activeMobileDropdown === 'filter' && (
+                        <div className="absolute top-full mt-2 bg-white text-black rounded-lg shadow-lg z-10 min-w-[120px]">
+                          {filters.map((filter) => (
+                            <button
+                              key={filter.value}
+                              className="w-full text-left px-4 py-2 hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg"
+                              onClick={() => handleOptionSelect(filter, 'filter')}
+                            >
+                              {filter.label}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
